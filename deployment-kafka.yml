@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-kafka
+  namespace: os1-final
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: pixelcodegg/b-final:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
