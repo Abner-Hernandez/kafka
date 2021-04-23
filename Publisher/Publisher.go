@@ -9,7 +9,7 @@ import (
 
 const (
 	topic         = "quickstart-events"
-	brokerAddress = "localhost:9092"
+	brokerAddress = "kafka:9092"
 )
 
 func produce(ctx context.Context, string messageSend) {
