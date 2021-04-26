@@ -2,14 +2,18 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"strconv"
 
 	"github.com/segmentio/kafka-go"
+	"github.com/tidwall/sjson"
 )
 
 const (
 	topic         = "quickstart-events"
-	brokerAddress = "kafka:9092"
+	brokerAddress = "localhost:9092"
 )
 
 func produce(ctx context.Context, string messageSend) {
@@ -36,10 +40,21 @@ func produce(ctx context.Context, string messageSend) {
 
 }
 
-func main() {
-	// create a new context
-	ctx := context.Background()
-	for i := 0; i < 20; i++ {
-		go produce(ctx, "mensaje"+i)
+func manejador(w http.ResponseWriter, r *http.Request) {
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err)
 	}
+	fmt.Println("response Body:", string(body))
+
+	value := string(body)
+	mesage, _ := sjson.Set(value, "way", "Google")
+
+	go produce(context.Background(), mesage)
+}
+
+func main() {
+	http.HandleFunc("/", manejador)
+	fmt.Println("El servidor se encuentra en ejecución")
+	fmt.Println(http.ListenAndServe(":8080", nil))
 }

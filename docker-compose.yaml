@@ -1,0 +1,20 @@
+networks:
+    KafkaNetwork:
+      name: KafkaNetwork
+      driver: bridge
+  
+services:
+    mensajeria:
+      build:
+        context: ./Publisher
+      image: "publisher"
+      ports:
+        - "80:80"
+      networks:
+        - KafkaNetwork
+    kafka:
+      build:
+        context: ./Subscriber
+      image: "subscriber"
+      networks:
+        - KafkaNetwork

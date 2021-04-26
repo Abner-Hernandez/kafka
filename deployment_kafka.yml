@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka_deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kafka_client
+  template:
+    metadata:
+      labels:
+        app: kafka_client
+    spec:
+      containers:
+      - name: kafka_publisher
+        image: battleab/kafka_publisher
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+      containers:
+      - name: kafka_subscriber
+        image: battleab/kafka_subscriber
+        imagePullPolicy: Always
