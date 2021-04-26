@@ -16,7 +16,7 @@ const (
 	brokerAddress = "10.128.0.2:31305"
 )
 
-func produce(ctx context.Context, string messageSend) {
+func produce(ctx context.Context, mensaje string) {
 	// initialize a counter
 	i := 0
 
@@ -32,7 +32,7 @@ func produce(ctx context.Context, string messageSend) {
 	err := w.WriteMessages(ctx, kafka.Message{
 		Key: []byte(strconv.Itoa(i)),
 		// create an arbitrary message payload for the value
-		Value: []byte(messageSend),
+		Value: []byte(mensaje),
 	})
 	if err != nil {
 		panic("could not write message " + err.Error())
