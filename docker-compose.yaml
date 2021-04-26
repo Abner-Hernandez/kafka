@@ -9,7 +9,7 @@ services:
         context: ./Publisher
       image: "publisher"
       ports:
-        - "80:80"
+        - "80:8080"
       networks:
         - KafkaNetwork
     kafka:
