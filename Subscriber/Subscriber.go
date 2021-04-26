@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	topic         = "quickstart-events"
-	brokerAddress = "localhost:9092"
+	topic         = "my-topic"
+	brokerAddress = "10.128.0.2:31305"
 )
 
 type Block struct {
