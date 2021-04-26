@@ -48,7 +48,7 @@ func manejador(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("response Body:", string(body))
 
 	value := string(body)
-	mesage, _ := sjson.Set(value, "way", "Google")
+	mesage, _ := sjson.Set(value, "way", "Kafka")
 
 	go produce(context.Background(), mesage)
 }
