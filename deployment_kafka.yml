@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kafka_deployment
+  namespace: linkerd-project
 spec:
   replicas: 3
   selector:
@@ -22,3 +23,15 @@ spec:
       - name: kafka_subscriber
         image: battleab/kafka_subscriber
         imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka_client
+  namespace: linkerd-project
+spec:
+  ports:
+  - name: service
+    port: 8080
+  selector:
+    app: kafka_client
