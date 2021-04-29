@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: api-dummy-deployment
+  namespace: linkerd-project
+spec:
+  selector:
+    matchLabels:
+      app: api-dummy
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: api-dummy
+    spec:
+      containers:
+      - name: api-dummy
+        image: nginx:latest
+        ports:
+        - containerPort: 80
