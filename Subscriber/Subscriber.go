@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 
 	"github.com/segmentio/kafka-go"
 )
@@ -56,18 +59,16 @@ func consume(ctx context.Context) {
 			panic("could not read message " + err.Error())
 		}
 
-		/*
-			b := []byte(string(msg.Value))
-			resp, err := http.Post("http://35.222.55.115:8080/nuevoRegistro", "application/json",
-				bytes.NewBuffer(b))
+		b := []byte(string(msg.Value))
+		resp, err := http.Post("http://34.66.140.170:8080/nuevoRegistro", "application/json",
+			bytes.NewBuffer(b))
 
-			if err != nil {
-				fmt.Print(err)
-			}
+		if err != nil {
+			fmt.Print(err)
+		}
 
-			body, err := ioutil.ReadAll(resp.Body)
-			fmt.Println(string(body))
-		*/
+		body, err := ioutil.ReadAll(resp.Body)
+		fmt.Println(string(body))
 
 		// after receiving the message, log its value
 		fmt.Println("received: ", string(msg.Value))
