@@ -17,7 +17,7 @@ spec:
         image: battleab/kafka_publisher
         imagePullPolicy: Always
         ports:
-          - containerPort: 80
+          - containerPort: 8080
       containers:
       - name: kafka_subscriber
         image: battleab/kafka_subscriber
