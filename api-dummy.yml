@@ -20,7 +20,7 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
-
+---
 kind: Service
 apiVersion: v1
 metadata:
