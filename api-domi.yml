@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-dummy-deployment
+  labels:
+    app: apiDummy
   namespace: linkerd-project
 spec:
   selector:
