@@ -25,6 +25,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: api-service
+  namespace: linkerd-project
 spec:
   selector:
     app: apiDummy
