@@ -4,7 +4,7 @@ metadata:
   name: nginx-ingress
   annotations:
     ingress.kubernetes.io/rewrite-target: /
-    namespace: linkerd-project
+  namespace: linkerd-project
 spec:
   rules:
   - http:
