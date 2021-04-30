@@ -24,7 +24,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: appi-service
+  name: api-service
 spec:
   selector:
     app: apiDummy
