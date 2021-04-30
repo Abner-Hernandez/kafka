@@ -20,3 +20,13 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: appi-service
+spec:
+  selector:
+    app: apiDummy
+  ports:
+    - port: 80 # Default port for image
