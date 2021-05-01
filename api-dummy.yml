@@ -1,23 +1,23 @@
-apiVersion: apps/v1
+apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
 kind: Deployment
 metadata:
-  name: api-dummy-deployment
+  name: nginx-deployment
   labels:
     app: apiDummy
   namespace: linkerd-project
 spec:
   selector:
     matchLabels:
-      app: api-dummy
-  replicas: 3
+      app: nginx
+  replicas: 4 # Actualiza el número de réplicas de 2 a 4
   template:
     metadata:
       labels:
-        app: api-dummy
+        app: nginx
     spec:
       containers:
-      - name: api-dummy
-        image: nginx:latest
+      - name: nginx
+        image: nginx:1.8
         ports:
         - containerPort: 80
 ---
