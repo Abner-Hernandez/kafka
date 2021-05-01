@@ -52,6 +52,6 @@ metadata:
 spec:
   ports:
   - name: service
-    port: 8080
+    port: 80
   selector:
     app: error-injector
