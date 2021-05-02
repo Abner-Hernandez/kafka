@@ -12,7 +12,7 @@ import (
 
 const (
 	topic         = "my-topic"
-	brokerAddress = "10.128.0.2:31305"
+	brokerAddress = "10.128.0.20:32627"
 )
 
 type Block struct {

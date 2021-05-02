@@ -13,7 +13,7 @@ import (
 
 const (
 	topic         = "my-topic"
-	brokerAddress = "10.128.0.2:31305"
+	brokerAddress = "10.128.0.20:32627"
 )
 
 func produce(ctx context.Context, mensaje string) {
@@ -56,5 +56,5 @@ func manejador(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", manejador)
 	fmt.Println("El servidor se encuentra en ejecución")
-	fmt.Println(http.ListenAndServe(":8080", nil))
+	fmt.Println(http.ListenAndServe(":80", nil))
 }
