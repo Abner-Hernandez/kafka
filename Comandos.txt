@@ -1,0 +1,7 @@
+kubectl get -n linkerd-project deployments error-injector -o yaml \
+  | linkerd inject - \
+  | kubectl apply -f -
+
+kubectl get -n linkerd-project deployments error-injector -o yaml \
+  | linkerd inject - \
+  | kubectl apply -f -

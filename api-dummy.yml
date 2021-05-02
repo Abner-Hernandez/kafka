@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-nginx
+  name: api-dummy
   namespace: linkerd-project
 spec:
   selector:
     matchLabels:
-      run: my-nginx
+      run: api-dummy
   replicas: 2
   template:
     metadata:
       labels:
-        run: my-nginx
+        run: api-dummy
     spec:
       containers:
-      - name: my-nginx
+      - name: api-dummy
         image: nginx
         ports:
         - containerPort: 80
@@ -25,10 +25,10 @@ metadata:
   name: api-service
   namespace: linkerd-project
   labels:
-    run: my-nginx
+    run: api-dummy
 spec:
   ports:
   - port: 80
     protocol: TCP
   selector:
-    run: my-nginx
+    run: api-dummy
