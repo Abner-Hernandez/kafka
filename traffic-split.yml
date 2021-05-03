@@ -6,7 +6,7 @@ metadata:
 spec:
   service: api-service
   backends:
-  - service: error-injector
+  - service: kafka-client
     weight: 900m
-  - service: api-service
+  - service: error-injector
     weight: 100m

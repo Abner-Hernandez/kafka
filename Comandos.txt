@@ -6,7 +6,7 @@ kubectl get -n linkerd-project deployments api-dummy -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
 
-kubectl get -n linkerd-project deployments kafka_client -o yaml \
+kubectl get -n linkerd-project deployments kafka-client -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
 
@@ -45,3 +45,6 @@ kubectl get ingress nginx-ingress
 
 kubectl get deployment nginx-ingress-ingress-nginx-controller -n nginx-ingress -o yaml | linkerd inject --ingress - | kubectl apply -f -
 kubectl describe pod/nginx-ingress-ingress-nginx-controller-566794fdd6-88mvn | grep "linkerd.io/inject: ingress"
+
+
+kubectl get nodes --output=jsonpath='{range .items[*]}{.status.addresses[?(@.type=="ExternalIP")].address}{"\n"}{end}'
