@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka_deployment
+  name: kafka_client
   namespace: linkerd-project
 spec:
   replicas: 3

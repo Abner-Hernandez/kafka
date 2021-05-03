@@ -6,6 +6,11 @@ kubectl get -n linkerd-project deployments api-dummy -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
 
+kubectl get -n linkerd-project deployments kafka_client -o yaml \
+  | linkerd inject - \
+  | kubectl apply -f -
+
+
 export PATH=$PATH:/root/.linkerd2/bin
 
 sudo lsof -t -i:50750
