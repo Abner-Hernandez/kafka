@@ -16,7 +16,7 @@ const (
 	brokerAddress = "34.122.44.4:32627"
 )
 
-func produce(ctx context.Context, mensaje string) {
+func produce(ctx context.Context, mensaje string, resultado string) {
 	// initialize a counter
 	i := 0
 
@@ -35,7 +35,7 @@ func produce(ctx context.Context, mensaje string) {
 		Value: []byte(mensaje),
 	})
 	if err != nil {
-		panic("could not write message " + err.Error())
+		resultado = "error al escribir";
 	}
 
 }
@@ -50,7 +50,9 @@ func manejador(w http.ResponseWriter, r *http.Request) {
 	value := string(body)
 	mesage, _ := sjson.Set(value, "way", "Kafka")
 
-	go produce(context.Background(), mesage)
+	string resultado = mesage;
+	go produce(context.Background(), mesage, resultado)
+	w.Write([]byte(resultado))
 }
 
 func main() {
