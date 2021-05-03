@@ -35,7 +35,7 @@ func produce(ctx context.Context, mensaje string, resultado string) {
 		Value: []byte(mensaje),
 	})
 	if err != nil {
-		resultado = "error al escribir";
+		resultado = "error al escribir"
 	}
 
 }
@@ -50,7 +50,7 @@ func manejador(w http.ResponseWriter, r *http.Request) {
 	value := string(body)
 	mesage, _ := sjson.Set(value, "way", "Kafka")
 
-	string resultado = mesage;
+	resultado := mesage
 	go produce(context.Background(), mesage, resultado)
 	w.Write([]byte(resultado))
 }
