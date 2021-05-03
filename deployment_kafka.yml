@@ -10,7 +10,7 @@ spec:
       app: kafka-client
   template:
     metadata:
-      annotationns:
+      annotations:
         linkerd.io/inject: enabled
       labels:
         app: kafka-client
