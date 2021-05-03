@@ -2,6 +2,41 @@ kubectl get -n linkerd-project deployments error-injector -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
 
-kubectl get -n linkerd-project deployments error-injector -o yaml \
+kubectl get -n linkerd-project deployments api-dummy -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
+
+export PATH=$PATH:/root/.linkerd2/bin
+
+sudo lsof -t -i:50750
+sudo kill -9 $(sudo lsof -t -i:50750)
+
+kubectl scale --replicas=3 deployment/error-injector -n linkerd-project
+
+gcloud container clusters create cluster-final --num-nodes=3 --tags=allin,allout --enable-legacy-authorization --enable-basic-auth --issue-client-certificate --machine-type=n1-standard-2 --no-enable-network-policy
+
+gcloud container clusters get-credentials cluster-final --zone=us-central1-a
+
+publisher:
+bin/kafka-console-producer.sh --broker-list 10.128.0.20:32627 --topic my-topic
+
+subscriber:
+bin/kafka-console-consumer.sh --bootstrap-server 10.128.0.20:32627 --topic my-topic --from-beginning
+
+
+gcloud container clusters get-credentials cluster-project --zone=us-central1-c
+
+publisher:
+bin/kafka-console-producer.sh --broker-list 35.224.141.244:31305 --topic my-topic
+
+subscriber:
+bin/kafka-console-consumer.sh --bootstrap-server 35.224.141.244:31305 --topic my-topic --from-beginning
+
+kubectl create namespace linkerd-project
+
+
+kubectl get ingress nginx-ingress
+
+
+kubectl get deployment nginx-ingress-ingress-nginx-controller -n nginx-ingress -o yaml | linkerd inject --ingress - | kubectl apply -f -
+kubectl describe pod/nginx-ingress-ingress-nginx-controller-566794fdd6-88mvn | grep "linkerd.io/inject: ingress"

@@ -7,4 +7,6 @@ spec:
   service: api-service
   backends:
   - service: error-injector
-    weight: 1000m
+    weight: 900m
+  - service: api-service
+    weight: 100m
