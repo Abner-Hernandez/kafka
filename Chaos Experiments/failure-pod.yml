@@ -12,6 +12,6 @@ spec:
     namespaces:
       - linkerd-project
     labelSelectors:
-      "app": "kafka-client"  # the label of the pod for chaos injection
+      "app": "kafka-client" #"redis-client" # ""
   scheduler:
     cron: '@every 2m'

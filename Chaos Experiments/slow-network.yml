@@ -2,16 +2,19 @@ apiVersion: chaos-mesh.org/v1alpha1
 kind: NetworkChaos
 metadata:
   name: slow-network
+  namespace: chaos-testing
 spec:
-  action: delay # the specific chaos action to inject
-  mode: one # the mode to run chaos action; supported modes are one/all/fixed/fixed-percent/random-max-percent
-  selector: # pods where to inject chaos actions
+  action: delay
+  mode: one
+  selector:
     namespaces:
       - linkerd-project
     labelSelectors:
-      "app": "kafka-client"  # the label of the pod for chaos injection
+      "app": "kafka-client" #"redis-client" # ""
   delay:
-    latency: "10ms"
-  duration: "30s" # duration for the injected chaos experiment
-  scheduler: # scheduler rules for the running time of the chaos experiments about pods.
-    cron: "@every 60s"
+    latency: "90ms"
+    correlation: "25"
+    jitter: "90ms"
+  duration: "10s"
+  scheduler:
+    cron: "@every 15s"
