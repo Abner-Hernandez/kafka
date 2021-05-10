@@ -70,6 +70,23 @@ func consume(ctx context.Context) {
 		body, err := ioutil.ReadAll(resp.Body)
 		fmt.Println(string(body))
 
+		if err != nil {
+			fmt.Print(err)
+		}
+
+		resp2, err := http.Post("http://35.223.156.4:7019/nuevoRegistro", "application/json",
+			bytes.NewBuffer(b))
+
+		if err != nil {
+			fmt.Print(err)
+		}
+
+		body2, err := ioutil.ReadAll(resp2.Body)
+		fmt.Println(string(body2))
+
+		if err != nil {
+			fmt.Print(err)
+		}
 		// after receiving the message, log its value
 		fmt.Println("received: ", string(msg.Value))
 	}
