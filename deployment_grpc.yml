@@ -17,12 +17,12 @@ spec:
     spec:
       containers:
       - name: grpc-publisher
-        image: sicmmar/server_grpc
+        image: sicmmar/client_grpc
         imagePullPolicy: Always
         ports:
           - containerPort: 80
       - name: grpc-subscriber
-        image: sicmmar/client_grpc
+        image: sicmmar/server_grpc
         imagePullPolicy: Always
 ---
 apiVersion: v1
