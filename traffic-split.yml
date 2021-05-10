@@ -7,8 +7,10 @@ spec:
   service: api-service
   backends:
   - service: kafka-client
-    weight: 450m
+    weight: 300m
   - service: redis-client
-    weight: 450m
+    weight: 300m
+  - service: grpc-client
+    weight: 300m
   - service: error-injector
     weight: 100m

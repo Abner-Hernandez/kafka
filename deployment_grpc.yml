@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-client
+  namespace: linkerd-project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis-client
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: redis-client
+    spec:
+      containers:
+      - name: redis-publisher
+        image: sicmmar/server_grpc
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+      - name: redis-subscriber
+        image: sicmmar/client_grpc
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-client
+  namespace: linkerd-project
+spec:
+  ports:
+  - name: service
+    port: 80
+  selector:
+    app: redis-client
