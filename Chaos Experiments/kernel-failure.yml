@@ -1,13 +1,15 @@
 apiVersion: chaos-mesh.org/v1alpha1
 kind: KernelChaos
 metadata:
-  name: kernel-chaos-example
+  name: kernel-chaos
   namespace: chaos-testing
 spec:
   mode: one
   selector:
     namespaces:
-      - chaos-mount
+      - linkerd-project
+    labelSelectors:
+      "app": "kafka-client" #"redis-client" # ""
   failKernRequest:
     callchain:
       - funcname: '__x64_sys_mount'
