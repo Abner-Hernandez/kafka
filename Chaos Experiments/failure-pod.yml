@@ -7,11 +7,11 @@ spec:
   action: pod-failure
   mode: one
   value: ''
-  duration: '30s'
   selector:
     namespaces:
       - linkerd-project
     labelSelectors:
       "app": "kafka-client" #"redis-client" # ""
+  duration: '30s'
   scheduler:
     cron: '@every 2m'

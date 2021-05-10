@@ -8,9 +8,7 @@ spec:
   selector:
     namespaces:
       - linkerd-project
-    labelSelectors:
-      "app": "kafka-client" #"redis-client" # ""
   failKernRequest:
     callchain:
       - funcname: '__x64_sys_mount'
-    failtype: 1
+    failtype: 0
