@@ -7,6 +7,6 @@ COPY . /Server1
 RUN go get -u github.com/segmentio/kafka-go
 RUN go get -u github.com/tidwall/sjson
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD [ "go", "run", "Publisher.go"]

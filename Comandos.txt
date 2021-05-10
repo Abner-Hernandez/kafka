@@ -48,3 +48,10 @@ kubectl describe pod/nginx-ingress-ingress-nginx-controller-566794fdd6-88mvn | g
 
 
 kubectl get nodes --output=jsonpath='{range .items[*]}{.status.addresses[?(@.type=="ExternalIP")].address}{"\n"}{end}'
+bin/kafka-console-consumer.sh --bootstrap-server 34.122.44.4:32627 --topic my-topic --from-beginning
+
+kubectl exec -it kafka-client-85bf8f6bf8-kblkf -c kafka-publisher -- [bash|sh]
+
+kubectl exec -it kafka-client-85bf8f6bf8-kblkf -c kafka-subscriber -n linkerd-project -- /bin/bash
+kubectl exec -it kafka-client-85bf8f6bf8-pkrvr -c kafka-subscriber -n linkerd-project -- /bin/bash
+kubectl exec -it kafka-client-85bf8f6bf8-tzz9j -c kafka-subscriber -n linkerd-project -- /bin/bash
