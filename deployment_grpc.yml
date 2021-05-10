@@ -24,6 +24,7 @@ spec:
       - name: grpc-subscriber
         image: sicmmar/server_grpc
         imagePullPolicy: Always
+          - containerPort: 8081
 ---
 apiVersion: v1
 kind: Service
