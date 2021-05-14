@@ -1,0 +1,16 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: container-kill
+  namespace: chaos-testing
+spec:
+  action: container-kill
+  mode: one
+  containerName: 'prometheus'
+  selector:
+    namespaces:
+      - linkerd-project
+    labelSelectors:
+      "app": "kafka-client" #"redis-client" # ""
+  scheduler:
+    cron: '@every 30s'
