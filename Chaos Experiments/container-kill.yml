@@ -6,7 +6,7 @@ metadata:
 spec:
   action: container-kill
   mode: one
-  containerName: 'prometheus'
+  containerName: 'kafka-publisher'
   selector:
     namespaces:
       - linkerd-project
